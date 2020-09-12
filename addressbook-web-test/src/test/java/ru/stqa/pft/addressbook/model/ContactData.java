@@ -9,7 +9,11 @@ public class ContactData {
   private final String wPhone;
   private final String email;
 
-  public ContactData(String fName, String lName, String address, String hPhone, String cellPhone, String wPhone, String email) {
+
+
+  private String group;
+
+  public ContactData(String fName, String lName, String address, String hPhone, String cellPhone, String wPhone, String email, String group) {
     this.fName = fName;
     this.lName = lName;
     this.address = address;
@@ -17,7 +21,12 @@ public class ContactData {
     this.cellPhone = cellPhone;
     this.wPhone = wPhone;
     this.email = email;
+    this.group = group;
   }
+
+  public String getGroup() {
+      return group;
+    }
 
   public String getfName() {
     return fName;

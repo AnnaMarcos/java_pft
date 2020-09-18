@@ -12,6 +12,9 @@ import ru.stqa.pft.addressbook.model.GroupData;
 import java.util.List;
 import java.util.Set;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class ContactDeletionTest extends TestBase {
 
   @BeforeMethod
@@ -19,7 +22,7 @@ public class ContactDeletionTest extends TestBase {
     app.goTo().homePage();
     if (! app.contact().isThereAContact()){
       app.contact().create(new ContactData().withfName("Olga").withlName("Biyatova").withAddress("333 Heaven ave.").
-              withHomePhone("88888").withCellPhone("66666").withwPhone("77777").withEmail("bbbbbb@bbbbb.com")
+              withHomePhone("+88888").withCellPhone("66666").withwPhone("77777").withEmail("bbbbbb@bbbbb.com")
               .withGroup("Test4"), true);
     }
   }
@@ -31,9 +34,8 @@ public class ContactDeletionTest extends TestBase {
     ContactData deletedContact = before.iterator().next();
     app.contact().delete(deletedContact);
     app.goTo().homePage();
+    assertThat(app.contact().count(),  equalTo (before.size() - 1));
     Contacts after = app.contact().all();
-
-    Assert.assertEquals(after.size(), before.size() - 1);
     MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.withOut(deletedContact)));
   }
 

@@ -20,7 +20,8 @@ public class ContactModificationTest extends TestBase{
     app.goTo().homePage();
     if ( app.contact().all().size() == 0){
       app.contact().create (new ContactData().withfName("Olga").withlName("Biyatova").withAddress("333 Heaven ave.").
-              withHomePhone("+88888").withCellPhone("66666").withwPhone("77777").withEmail("bbbbbb@bbbbb.com").withGroup("Test"),true);
+              withHomePhone("+88888").withCellPhone("66666").withwPhone("77777").withEmail("bbbbbb@bbbbb.com")
+              .withEmail2("aaa@nnn").withEmail3("ddd@nnn").withGroup("Test"),true);
     }
   }
 

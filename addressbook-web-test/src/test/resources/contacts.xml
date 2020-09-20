@@ -32,26 +32,4 @@
     <email2>www@vvw.com 2</email2>
     <email3>bbb@ttt.com 2</email3>
   </contact>
-  <contact>
-    <fName>Olga 3</fName>
-    <lName>Biyatova 3</lName>
-    <address>123 Ash st. 3</address>
-    <homePhone>1111 3</homePhone>
-    <cellPhone>22222 3</cellPhone>
-    <wPhone>33333 3</wPhone>
-    <email>qqq@vvv.com 3</email>
-    <email2>www@vvw.com 3</email2>
-    <email3>bbb@ttt.com 3</email3>
-  </contact>
-  <contact>
-    <fName>Olga 4</fName>
-    <lName>Biyatova 4</lName>
-    <address>123 Ash st. 4</address>
-    <homePhone>1111 4</homePhone>
-    <cellPhone>22222 4</cellPhone>
-    <wPhone>33333 4</wPhone>
-    <email>qqq@vvv.com 4</email>
-    <email2>www@vvw.com 4</email2>
-    <email3>bbb@ttt.com 4</email3>
-  </contact>
 </list>

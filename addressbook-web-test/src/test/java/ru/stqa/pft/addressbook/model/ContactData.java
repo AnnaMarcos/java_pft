@@ -17,11 +17,17 @@ public class ContactData {
   private String lName;
   @Expose
   private String address;
+  @Expose
   private String homePhone;
+  @Expose
   private String cellPhone;
+  @Expose
   private String wPhone;
+  @Expose
   private String email;
+  @Expose
   private String email2;
+  @Expose
   private String email3;
   private String allEmails;
   private String group;

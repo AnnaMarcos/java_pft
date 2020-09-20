@@ -1,64 +1,82 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 import java.io.File;
 import java.util.Objects;
 
+@XStreamAlias("contact")
 public class ContactData {
-  private  int id =  Integer.MAX_VALUE;
-  private  String fName;
-  private  String lName;
-  private  String address;
-  private  String homePhone;
-  private  String cellPhone;
-  private  String wPhone;
-  private  String email;
-  private  String email2;
-  private  String email3;
-  private  String allEmails;
-  private  String group;
-  private  String allPhones;
-  private  File   photo;
+  @XStreamOmitField
+  private int id = Integer.MAX_VALUE;
+  private String fName;
+  private String lName;
+  private String address;
+  private String homePhone;
+  private String cellPhone;
+  private String wPhone;
+  private String email;
+  private String email2;
+  private String email3;
+  private String allEmails;
+  private String group;
+  private String allPhones;
+  private File photo;
 
 
   public File getPhoto() {
     return photo;
   }
+
   public String getEmail2() {
     return email2;
   }
+
   public String getEmail3() {
     return email3;
   }
+
   public String getAllEmails() {
     return allEmails;
   }
+
   public int getId() {
     return id;
   }
+
   public String getAllPhones() {
     return allPhones;
   }
+
   public String getfName() {
     return fName;
   }
+
   public String getlName() {
     return lName;
   }
+
   public String getAddress() {
     return address;
   }
+
   public String getHomePhone() {
     return homePhone;
   }
+
   public String getCellPhone() {
     return cellPhone;
   }
+
   public String getwPhone() {
     return wPhone;
   }
+
   public String getEmail() {
     return email;
   }
+
   public String getGroup() {
     return group;
   }
@@ -68,14 +86,17 @@ public class ContactData {
     this.photo = photo;
     return this;
   }
+
   public ContactData withEmail2(String email2) {
     this.email2 = email2;
     return this;
   }
+
   public ContactData withEmail3(String email3) {
     this.email3 = email3;
     return this;
   }
+
   public ContactData withAllEmails(String allEmails) {
     this.allEmails = allEmails;
     return this;
@@ -125,9 +146,26 @@ public class ContactData {
     this.email = email;
     return this;
   }
+
   public ContactData withGroup(String group) {
     this.group = group;
     return this;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactData that = (ContactData) o;
+    return id == that.id &&
+            Objects.equals(fName, that.fName) &&
+            Objects.equals(lName, that.lName) &&
+            Objects.equals(address, that.address);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, fName, lName, address);
   }
 
   @Override
@@ -138,20 +176,4 @@ public class ContactData {
             ", lName='" + lName + '\'' +
             '}';
   }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactData that = (ContactData) o;
-    return id == that.id &&
-            Objects.equals(fName, that.fName) &&
-            Objects.equals(lName, that.lName);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, fName, lName);
-  }
-
 }

@@ -1,0 +1,57 @@
+<list>
+  <contact>
+    <fName>Olga 0</fName>
+    <lName>Biyatova 0</lName>
+    <address>123 Ash st. 0</address>
+    <homePhone>1111 0</homePhone>
+    <cellPhone>22222 0</cellPhone>
+    <wPhone>33333 0</wPhone>
+    <email>qqq@vvv.com 0</email>
+    <email2>www@vvw.com 0</email2>
+    <email3>bbb@ttt.com 0</email3>
+  </contact>
+  <contact>
+    <fName>Olga 1</fName>
+    <lName>Biyatova 1</lName>
+    <address>123 Ash st. 1</address>
+    <homePhone>1111 1</homePhone>
+    <cellPhone>22222 1</cellPhone>
+    <wPhone>33333 1</wPhone>
+    <email>qqq@vvv.com 1</email>
+    <email2>www@vvw.com 1</email2>
+    <email3>bbb@ttt.com 1</email3>
+  </contact>
+  <contact>
+    <fName>Olga 2</fName>
+    <lName>Biyatova 2</lName>
+    <address>123 Ash st. 2</address>
+    <homePhone>1111 2</homePhone>
+    <cellPhone>22222 2</cellPhone>
+    <wPhone>33333 2</wPhone>
+    <email>qqq@vvv.com 2</email>
+    <email2>www@vvw.com 2</email2>
+    <email3>bbb@ttt.com 2</email3>
+  </contact>
+  <contact>
+    <fName>Olga 3</fName>
+    <lName>Biyatova 3</lName>
+    <address>123 Ash st. 3</address>
+    <homePhone>1111 3</homePhone>
+    <cellPhone>22222 3</cellPhone>
+    <wPhone>33333 3</wPhone>
+    <email>qqq@vvv.com 3</email>
+    <email2>www@vvw.com 3</email2>
+    <email3>bbb@ttt.com 3</email3>
+  </contact>
+  <contact>
+    <fName>Olga 4</fName>
+    <lName>Biyatova 4</lName>
+    <address>123 Ash st. 4</address>
+    <homePhone>1111 4</homePhone>
+    <cellPhone>22222 4</cellPhone>
+    <wPhone>33333 4</wPhone>
+    <email>qqq@vvv.com 4</email>
+    <email2>www@vvw.com 4</email2>
+    <email3>bbb@ttt.com 4</email3>
+  </contact>
+</list>

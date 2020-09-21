@@ -24,7 +24,7 @@ repositories {
     implementation 'mysql:mysql-connector-java:8.0.21'
 
     implementation 'org.hibernate:hibernate-core:5.4.20.Final'
-
+    
     implementation 'com.beust:jcommander:1.78'
   }
 

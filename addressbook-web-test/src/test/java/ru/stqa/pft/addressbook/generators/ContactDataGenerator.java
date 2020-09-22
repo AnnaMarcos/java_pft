@@ -48,7 +48,7 @@ public class ContactDataGenerator {
       System.out.println("Unrecognized format" + format);
     }
   }
-  public void saveAsJson(List<ContactData> contacts, File file) throws IOException {
+  private void saveAsJson(List<ContactData> contacts, File file) throws IOException {
     Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
     String json = gson.toJson(contacts);
     try( Writer writer = new FileWriter(file)) {
@@ -71,8 +71,8 @@ public class ContactDataGenerator {
       System.out.println(new File(".").getAbsolutePath());
       try (Writer writer = new FileWriter(file)) {
         for (ContactData contact : contacts) {
-          writer.write(String.format("%s; %s; %s ; %s; %s; %s ; %s ;%s; %s \n", contact.getfName(), contact.getlName(),
-                  contact.getAddress(), contact.getAllEmails(), contact.getEmail2(), contact.getEmail3()
+          writer.write(String.format("%s; %s; %s ; %s; %s; %s ; %s ;%s; %s; s \n", contact.getfName(), contact.getlName(),
+                  contact.getAddress(),contact.getEmail(), contact.getEmail2(), contact.getEmail3()
                   , contact.getHomePhone(), contact.getCellPhone(), contact.getwPhone()));
         }
       }
@@ -83,9 +83,9 @@ public class ContactDataGenerator {
       for (int i = 0; i< count; i ++) {
         contacts.add(new ContactData().withfName(String.format("Olga %s", i))
                 .withlName(String.format("Biyatova %s", i)).withAddress(String.format("123 Ash st. %s", i))
-                .withEmail(String.format("qqq@vvv.com %s", i)).withEmail2(String.format("www@vvw.com %s", i))
-                .withEmail3(String.format("bbb@ttt.com %s", i)).withHomePhone(String.format("1111 %s", i))
-                .withCellPhone(String.format("22222 %s", i)).withwPhone(String.format("33333 %s", i)));
+                .withHomePhone(String.format("+1111 %s", i)).withCellPhone(String.format("22222 %s", i))
+                .withwPhone(String.format("33333 %s", i)).withEmail(String.format("qqq@vvv.com %s", i))
+                .withEmail2(String.format("www@vvw.com %s", i)).withEmail3(String.format("bbb@ttt.com %s", i)).withHomePhone(String.format("photo")));
       }
       return contacts;
     }

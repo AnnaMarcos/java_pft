@@ -7,6 +7,8 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -54,14 +56,19 @@ public class ContactCreationTest extends TestBase {
       @Test (dataProvider = "validContactsFromJson" )
       public void testContactCreation(ContactData contact) {
         app.goTo().homePage();
+        Groups groups = app.db().groups();
         Contacts before = app.db().contacts();
-        app.contact().create(contact);
+        File photo = new File("src/test/resources/cat.png");
+        app.contact().create(contact.withPhoto(photo), true); //(new ContactData().inGroup(groups.iterator().next();
         app.goTo().homePage();
         assertThat(app.contact().count(), equalTo(before.size() + 1));
         Contacts after = app.db().contacts();
         assertThat(after, equalTo(before
                 .withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
+        verifyContactListInUI();
       }
+
+
       @Test (enabled = false)
       public void testCurrentDir() {
         File currentDir = new File(".");

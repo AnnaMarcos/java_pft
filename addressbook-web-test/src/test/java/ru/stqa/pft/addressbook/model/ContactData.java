@@ -1,16 +1,14 @@
 package ru.stqa.pft.addressbook.model;
-import com.google.gson.annotations.Expose;
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 
-
-  @Entity
+@Entity
   @Table(name = "addressbook")
   //@XStreamAlias("contact")
 public class ContactData {
@@ -65,8 +63,10 @@ public class ContactData {
   @Transient
   private String allEmails;
 
-  @Transient
-  private String group;
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable (name = "address_in_groups", joinColumns = @JoinColumn (name = "id"),
+          inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
 
   @Transient
   private String allPhones;
@@ -76,7 +76,7 @@ public class ContactData {
   private String photo = "";
 
   public File getPhoto() {
-    return new File (photo);
+    return new File (photo) ;
   }
   public String getEmail2() {
     return email2;
@@ -114,9 +114,11 @@ public class ContactData {
   public String getEmail() {
     return email;
   }
-  public String getGroup() {
-    return group;
+
+  public Groups getGroups() {
+    return new Groups(groups);
   }
+
   public ContactData withPhoto(File photo) {
     this.photo = photo.getPath();
     return this;
@@ -171,19 +173,7 @@ public class ContactData {
     this.email = email;
     return this;
   }
-  public ContactData withGroup(String group) {
-    this.group = group;
-    return this;
-  }
 
-    @Override
-  public String toString() {
-    return "ContactData{" +
-            "id=" + id +
-            ", fName='" + fName + '\'' +
-            ", lName='" + lName + '\'' +
-            '}';
-  }
     @Override
     public boolean equals(Object o) {
       if (this == o) return true;
@@ -196,15 +186,27 @@ public class ContactData {
               Objects.equals(homePhone, that.homePhone) &&
               Objects.equals(cellPhone, that.cellPhone) &&
               Objects.equals(wPhone, that.wPhone) &&
-              Objects.equals(email, that.email) &&
-              Objects.equals(email2, that.email2) &&
-              Objects.equals(email3, that.email3) &&
-              Objects.equals(photo, that.photo);
+              Objects.equals(email, that.email);
     }
 
     @Override
     public int hashCode() {
-      return Objects.hash(id, fName, lName, address, homePhone, cellPhone, wPhone, email, email2, email3, photo);
+      return Objects.hash(id, fName, lName, address, homePhone, cellPhone, wPhone, email);
     }
 
-  }
+    @Override
+    public String toString() {
+      return "ContactData{" +
+              "id=" + id +
+              ", fName='" + fName + '\'' +
+              ", lName='" + lName + '\'' +
+              ", address='" + address + '\'' +
+              '}';
+    }
+    public ContactData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
+    }
+
+
+}

@@ -21,29 +21,26 @@ public class ContactModificationTest extends TestBase{
     if ( app.db().contacts().size() == 0){
       app.goTo().homePage();
       app.contact().create (new ContactData().withfName("Olga").withlName("Biyatova").withAddress("333 Heaven ave.").
-              withHomePhone("+88888").withCellPhone("66666").withwPhone("77777").withEmail("bbbb@bbbbb.com")
-              .withEmail2("aaa@nnn").withEmail3("ddd@nnn"));
+              withHomePhone("88888").withCellPhone("66666").withwPhone("77777").withEmail("bbbb@bbbbb.com")
+              .withEmail2("aaa@nnn").withEmail3("ddd@nnn"),true);
     }
   }
 
   @Test
   public void testContactModification() {
-    app.goTo().homePage();
-    Contacts before = app.db().contacts();
-    ContactData modifiedContact = before.iterator().next();
-    ContactData contact =  (new ContactData().withId(modifiedContact.getId()).withfName("Chris")
-            .withlName("Silantyev").withAddress("777 Sun ave.").withHomePhone("+00000").withCellPhone("11111111")
-           .withwPhone("2222").withEmail("ccccc@sssss.com").withEmail2("fff@fd.com").withEmail3("ddd@bbb.ru"));
-    app.contact().modify(contact);
-    app.goTo().homePage();
-    Assert.assertEquals(app.contact().count(),before.size());
-    Contacts after = app.db().contacts();
-    MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.withOut(modifiedContact).withAdded(contact)));
-
-
-
-
+    if (Boolean.getBoolean("verifyUI")) {
+      app.goTo().homePage();
+      Contacts before = app.db().contacts();
+      ContactData modifiedContact = before.iterator().next();
+      ContactData contact = (new ContactData().withId(modifiedContact.getId()).withfName("Chris")
+              .withlName("Silantyev").withAddress("777 Sun ave.").withHomePhone("+000").withCellPhone("11111111")
+              .withwPhone("2222").withEmail("ccccc@sssss.com").withEmail2("fff@fd.com").withEmail3("ddd@bbb.ru"));
+      app.contact().modify(contact);
+      app.goTo().homePage();
+      Assert.assertEquals(app.contact().count(), before.size());
+      Contacts after = app.db().contacts();
+      MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.withOut(modifiedContact).withAdded(contact)));
+      verifyContactListInUI();
+    }
   }
-
-
 }

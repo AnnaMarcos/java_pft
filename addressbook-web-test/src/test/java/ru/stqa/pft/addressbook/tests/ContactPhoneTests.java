@@ -18,7 +18,7 @@ public class ContactPhoneTests extends TestBase{
       app.goTo().homePage();
       app.contact().create (new ContactData().withfName("Olga").withlName("Biyatova").withAddress("333 Heaven ave.").
               withHomePhone("+88888").withCellPhone("66666").withwPhone("77777").withEmail("bbbb@bbbbb.com")
-              .withEmail2("aaa@nnn").withEmail3("ddd@nnn"));
+              .withEmail2("aaa@nnn").withEmail3("ddd@nnn"),false);
     }
   }
 

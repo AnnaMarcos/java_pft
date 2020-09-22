@@ -2,16 +2,34 @@
   {
     "fName": "Olga 0",
     "lName": "Biyatova 0",
-    "address": "123 Ash st. 0"
+    "address": "123 Ash st. 0",
+    "homePhone": "+ 1111 0",
+    "cellPhone": "22222 0",
+    "wPhone": "33333 0",
+    "email": "qqq@vvv.com 0",
+    "email2": "www@vvw.com 0",
+    "email3": "bbb@ttt.com 0"
   },
   {
     "fName": "Olga 1",
     "lName": "Biyatova 1",
-    "address": "123 Ash st. 1"
+    "address": "123 Ash st. 1",
+    "homePhone": "+ 1111 1",
+    "cellPhone": "22222 1",
+    "wPhone": "33333 1",
+    "email": "qqq@vvv.com 1",
+    "email2": "www@vvw.com 1",
+    "email3": "bbb@ttt.com 1"
   },
   {
     "fName": "Olga 2",
     "lName": "Biyatova 2",
-    "address": "123 Ash st. 2"
+    "address": "123 Ash st. 2",
+    "homePhone": "+ 1111 2",
+    "cellPhone": "22222 2",
+    "wPhone": "33333 2",
+    "email": "qqq@vvv.com 2",
+    "email2": "www@vvw.com 2",
+    "email3": "bbb@ttt.com 2"
   }
 ]

@@ -1,5 +1,4 @@
 package ru.stqa.pft.addressbook.appmanager;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,11 +18,11 @@ public class ApplicationManager {
   private  String browser;
   WebDriver wd;
 
-
   public   NavigationHelper navigationHelper;
   public   ContactHelper contactHelper;
   public   GroupHelper groupHelper;
   public   SessionHelper sessionHelper;
+  public  DbHelper dbHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -31,42 +30,47 @@ public class ApplicationManager {
 
   }
 
-  public void init() throws IOException {
-    String target = System.getProperty("target", "local");
-    properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-    if (browser.equals(BrowserType.FIREFOX)) {
-      wd = new FirefoxDriver();
-    } else if (browser.equals(BrowserType.CHROME)) {
-      wd = new ChromeDriver();
-    } else if (browser.equals(BrowserType.IE)){
-      wd = new InternetExplorerDriver();
-  }
-    wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-    wd.get(properties.getProperty("web.baseUrl"));
-    groupHelper = new GroupHelper(wd);
-    contactHelper = new ContactHelper(wd);
-    navigationHelper = new NavigationHelper(wd);
-    sessionHelper = new SessionHelper(wd);
-    sessionHelper.login(properties.getProperty("web.adminUser"), properties.getProperty("web.adminPassword"));
-  }
+    public void init() throws IOException {
+      String target = System.getProperty("target", "local");
+      properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
-  public void logout() {
-    wd.findElement(By.linkText("Logout")).click();
-  }
+      dbHelper = new DbHelper();
 
-  public void stop() {
-    wd.quit();
-  }
+      if (browser.equals(BrowserType.FIREFOX)) {
+        wd = new FirefoxDriver();
+      } else if (browser.equals(BrowserType.CHROME)) {
+        wd = new ChromeDriver();
+      } else if (browser.equals(BrowserType.IE)){
+        wd = new InternetExplorerDriver();
+      }
+      wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+      wd.get(properties.getProperty("web.baseUrl"));
+      groupHelper = new GroupHelper(wd);
+      contactHelper = new ContactHelper(wd);
+      navigationHelper = new NavigationHelper(wd);
+      sessionHelper = new SessionHelper(wd);
+      sessionHelper.login(properties.getProperty("web.adminUser"), properties.getProperty("web.adminPassword"));
 
-  public GroupHelper group() {
-    return groupHelper;
-  }
 
-  public ContactHelper contact() {
-    return contactHelper;
-  }
+    }
 
-  public NavigationHelper goTo() {
-    return navigationHelper;
+    public void logout() {
+      wd.findElement(By.linkText("Logout")).click();
+    }
+    public void stop() {
+      wd.quit();
+    }
+    public GroupHelper group() {
+      return groupHelper;
+    }
+    public ContactHelper contact() {
+      return contactHelper;
+    }
+    public NavigationHelper goTo() {
+      return navigationHelper;
+    }
+    public DbHelper db() {
+      return dbHelper;
+    }
+
   }
-}

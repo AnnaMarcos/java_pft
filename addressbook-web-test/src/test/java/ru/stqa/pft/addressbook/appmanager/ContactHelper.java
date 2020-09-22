@@ -8,10 +8,7 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends HelperBase{
 
@@ -19,11 +16,12 @@ public class ContactHelper extends HelperBase{
     super(wd);
   }
 
-  public void submitContactCreation() {
-    wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+  public void submit() {
+    click(By.xpath("(//input[@name='submit'])[2]"));
+   // wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
   }
 
-  public void fillContactForm(ContactData contactData, boolean creation) {
+  public void fillContactForm(ContactData contactData) {
     type(By.name("firstname"), contactData.getfName());
     type(By.name("lastname"), contactData.getlName());
     type(By.name("address"), contactData.getAddress());
@@ -36,31 +34,37 @@ public class ContactHelper extends HelperBase{
     attach(By.name("photo"), contactData.getPhoto());
 
 
- /* if(creation){
+
+  /* if(creation){
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
 
-  */
+   */
+   }
 
+  public void selectAlert(){
+    assert (true);
   }
 
+  public void switchTo() {
+    wd.switchTo().alert().accept();
+  }
 
-
-  public void create() {
-    wd.findElement(By.linkText("add new")).click();
+  public void add_new() {
+   click(By.linkText("add new"));
   }
 
   public void deleteSelectedContact() {
-    wd.findElement(By.xpath("//input[@value='Delete']")).click();
+    click(By.xpath("//input[@value='Delete']"));
   }
 
   public void selectContact(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
 
-  public void selectContactById(int id) {wd.findElement(By.cssSelector("input[value= '" + id +"' ]")).click();
+  public void selectContactById(int id) {click(By.cssSelector("input[value= '" + id +"' ]"));
   }
 
   public void contactDeletionVerification() {
@@ -69,23 +73,23 @@ public class ContactHelper extends HelperBase{
   }
 
   public void editContactById(int id) {
-    wd.findElement(By.cssSelector("img[alt=\"Edit\"]")).click();
+    click(By.cssSelector("img[alt=\"Edit\"]"));
   }
 
   public void updateContact() {
-    wd.findElement(By.xpath("(//input[@name='update'])[2]")).click();
+    click(By.xpath("(//input[@name='update'])[2]"));
   }
 
-  public void create(ContactData contact, boolean creation) {
-   create();
-   fillContactForm (contact,creation);
-   submitContactCreation();
-   contactCache = null;
+  public void create(ContactData contact) {
+    add_new();
+    fillContactForm (contact);
+    submit();
+
   }
 
   public void modify(ContactData contact) {
     editContactById(contact.getId());
-    fillContactForm(contact,false);
+    fillContactForm(contact);
     updateContact();
     contactCache = null;
   }
@@ -145,7 +149,7 @@ public class ContactHelper extends HelperBase{
             .withCellPhone(cellPhone).withwPhone(wPhone).withEmail(email).withEmail2(email2).withEmail3(email3);
   }
 
-  private void initContactModificationById(int id) {
+  public void initContactModificationById(int id) {
     //WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value= '%s']", id)));
     //WebElement row = checkbox.findElement(By.xpath("./../.."));
    // List<WebElement> cells = row.findElements((By.tagName("td")));

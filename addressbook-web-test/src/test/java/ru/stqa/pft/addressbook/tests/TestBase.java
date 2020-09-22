@@ -14,21 +14,20 @@ import java.util.Arrays;
 
 public class TestBase {
 
+
   Logger logger = LoggerFactory.getLogger(TestBase.class);
 
-  protected   static final ApplicationManager app
+  public   static final ApplicationManager app
           = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
   @BeforeSuite(alwaysRun = true)
   public void setUp() throws Exception {
     app.init();
   }
-
   @AfterSuite(alwaysRun = true)
   public void tearDown() throws Exception {
     app.stop();
   }
-
   public ApplicationManager getApp() {
     return app;
   }

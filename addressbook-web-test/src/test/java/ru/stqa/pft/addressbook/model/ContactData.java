@@ -1,4 +1,7 @@
 package ru.stqa.pft.addressbook.model;
+import com.google.gson.annotations.Expose;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -10,21 +13,21 @@ import java.util.Set;
 
 @Entity
   @Table(name = "addressbook")
-  //@XStreamAlias("contact")
+  @XStreamAlias("contact")
 public class ContactData {
 
-  //@XStreamOmitField
+  @XStreamOmitField
   @Id
   @Column(name = "id")
   private int id = Integer.MAX_VALUE;
 
-
+  @Expose
   @Column(name = "firstname")
   private String fName;
 
+  @Expose
   @Column(name = "lastname")
   private String lName;
-
 
   @Column(name = "address")
   @Type(type = "text")
@@ -45,7 +48,7 @@ public class ContactData {
   @Type(type = "text")
   private String wPhone;
 
-
+  @Expose
   @Column(name = "email")
   @Type(type = "text")
   private String email;

@@ -1,4 +1,4 @@
-package ru.stqa.pft.addressbook.appmanager;
+package ru.stqa.pft.mantis.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,15 +12,10 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class ApplicationManager {
+public class ApplicationManager  {
   private final Properties properties;
   WebDriver wd;
 
-  public   NavigationHelper navigationHelper;
-  public   ContactHelper contactHelper;
-  public   GroupHelper groupHelper;
-  public   SessionHelper sessionHelper;
-  public  DbHelper dbHelper;
   private  String browser;
 
   public ApplicationManager(String browser) {
@@ -33,7 +28,6 @@ public class ApplicationManager {
       String target = System.getProperty("target", "local");
       properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
-      dbHelper = new DbHelper();
 
       if (browser.equals(BrowserType.FIREFOX)) {
         wd = new FirefoxDriver();
@@ -44,11 +38,6 @@ public class ApplicationManager {
       }
       wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
       wd.get(properties.getProperty("web.baseUrl"));
-      groupHelper = new GroupHelper(wd);
-      contactHelper = new ContactHelper(wd);
-      navigationHelper = new NavigationHelper(wd);
-      sessionHelper = new SessionHelper(wd);
-      sessionHelper.login(properties.getProperty("web.adminUser"), properties.getProperty("web.adminPassword"));
 
 
     }
@@ -58,18 +47,6 @@ public class ApplicationManager {
     }
     public void stop() {
       wd.quit();
-    }
-    public GroupHelper group() {
-      return groupHelper;
-    }
-    public ContactHelper contact() {
-      return contactHelper;
-    }
-    public NavigationHelper goTo() {
-      return navigationHelper;
-    }
-    public DbHelper db() {
-      return dbHelper;
     }
 
   }

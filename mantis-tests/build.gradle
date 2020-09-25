@@ -10,22 +10,38 @@ repositories {
     implementation 'org.testng:testng:7.1.0'
 
     implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+
     implementation 'org.hamcrest:java-hamcrest:2.0.0.0'
-    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.12'
-    compile group: 'commons-net', name: 'commons-net', version: '3.6'
-    compile group: 'org.subethamail', name: 'subethasmtp', version: '3.1.3'
-    compile group: 'ru.lanwen.verbalregex', name: 'java-verbal-expressions', version: '1.6'
-    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
-    compile group: 'biz.futureware.mantis', name: 'mantis-axis-soap-client', version: '1.2.19'
+
+    implementation 'com.beust:jcommander:1.78'
+
+    implementation 'com.thoughtworks.xstream:xstream:1.4.13'
+
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    implementation 'ch.qos.logback:logback-classic:1.2.3'
+
+    implementation 'mysql:mysql-connector-java:8.0.21'
+
+    implementation 'org.hibernate:hibernate-core:5.4.18.Final'
+    
+    implementation 'com.beust:jcommander:1.78'
+
+    implementation 'HTTPClient:HTTPClient:0.3-3'
+
+    implementation 'org.apache.httpcomponents:httpclient:4.5.12'
+
+    implementation 'commons-net:commons-net:3.6'
+
+    implementation 'org.subethamail:subethasmtp:3.1.7'
+
+    implementation 'ru.lanwen.verbalregex:java-verbal-expressions:1.6'
   }
 
-tasks.withType(JavaCompile) {
-  options.encoding = 'UTF-8'
-}
 
-  test {
 
-    useTestNG {
+    test {
+  useTestNG {
     suites 'src/test/resources/testng.xml'
   }
     if (project.hasProperty('browser')) {
@@ -33,8 +49,5 @@ tasks.withType(JavaCompile) {
     }
     if (project.hasProperty('target')) {
       systemProperty 'target', "${target}"
-    }
-    if (project.hasProperty('verifyUI')) {
-      systemProperty 'verifyUI', "${verifyUI}"
     }
 }

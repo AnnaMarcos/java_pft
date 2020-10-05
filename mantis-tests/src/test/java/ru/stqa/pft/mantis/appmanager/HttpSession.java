@@ -1,4 +1,4 @@
-package ru.stqa.pft.mantis;
+package ru.stqa.pft.mantis.appmanager;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -39,7 +39,7 @@ public boolean login (String username, String password) throws IOException {
   post.setEntity(new UrlEncodedFormEntity(params));
   CloseableHttpResponse response = httpClient.execute(post);
   String body = getTextFrom(response);
-  return body.contains(String.format("<span class=\"label hidden-xs label-default arrowed\">administrator</span>", username));
+  return body.contains(String.format("<span class=\"user-info\">%s</span>", username));
 }
 private String getTextFrom(CloseableHttpResponse response) throws IOException {
   try {
